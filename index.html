@@ -26,6 +26,9 @@
         }
         h1 {
             font-size: 3rem;
+            color: #FFD700; /* Bright gold color */
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8), 
+                         0 0 15px rgba(255, 215, 0, 0.9); /* Glowing effect */
             margin-bottom: 20px;
         }
         .buttons {
@@ -45,6 +48,26 @@
             background-color: #fff;
             color: #ff6f91;
         }
+        #confirmation {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        #confirmation p {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .confirmation-buttons {
+            margin-top: 10px;
+        }
+        .confirmation-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -53,8 +76,42 @@
         <p>You're the sweetest thing that ever happened to me! 💕</p>
         <div class="buttons">
             <a href="https://example.com/yes" target="_blank">Yes!</a>
-            <a href="https://example.com/no" target="_blank">No</a>
+            <a href="#" onclick="showConfirmation()">No</a>
+        </div>
+
+        <!-- Hidden confirmation box -->
+        <div id="confirmation">
+            <p>Are you sure you don't want to be my Valentine?</p>
+            <div class="confirmation-buttons">
+                <button id="yesButton" onclick="confirmNo()">Yes, I'm sure</button>
+                <button onclick="cancelNo()">Cancel</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Function to show confirmation box
+        function showConfirmation() {
+            document.getElementById("confirmation").style.display = "block";
+        }
+
+        // Function to confirm "No"
+        function confirmNo() {
+            // Change the button text to "Just think about it"
+            const yesButton = document.getElementById("yesButton");
+            yesButton.innerHTML = "Just think about it";
+            
+            // Disable the button to prevent further clicks
+            yesButton.disabled = true;
+            
+            // Optionally, show a message or take any further actions
+            alert("You’re still my Valentine, think about it! 💖");
+        }
+
+        // Function to cancel "No" and hide the confirmation box
+        function cancelNo() {
+            document.getElementById("confirmation").style.display = "none";
+        }
+    </script>
 </body>
 </html>
